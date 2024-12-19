@@ -50,6 +50,7 @@ const BlogController = {
 
   search(req, res) {
     const { search } = req.query;
+    console.log('in search controller :: ', search);
     BlogService.searchService(search)
       .then(result => {
         res.status(200).json({ Data: result });

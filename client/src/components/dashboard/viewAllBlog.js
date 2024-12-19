@@ -16,8 +16,7 @@ const ViewAllBlog = () => {
   const [viewAllDetails, setAllViewDetails] = useState(ApiData);
   const [dialogEdit, setDialogEdit] = useState(false);
   const [dialogViewDetails, setDialogViewDetails] = useState({ title: '', comment: '', id: '' });
-
-  // console.log('in data records :::: ', data);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     blogdetails
@@ -29,6 +28,18 @@ const ViewAllBlog = () => {
         console.log('in error', error);
       });
   }, [dialogEdit]);
+
+  // useEffect(() => {
+  //   console.log('in effect useEffect search :: ');
+  //   blogdetails
+  //     .searchDetails()
+  //     .then(result => {
+  //       setAllViewDetails(result.data.Data);
+  //     })
+  //     .catch(error => {
+  //       console.log('in error', error);
+  //     });
+  // }, [search]);
 
   const handleEdit = () => {
     setDialogEdit(true);
@@ -42,6 +53,19 @@ const ViewAllBlog = () => {
     [dialogEdit]
   );
 
+  const handleSearch = e => {
+    console.log('in search button', e.target.value);
+    setSearch(e.target.value);
+    blogdetails
+      .searchDetails(e.target.value)
+      .then(result => {
+        setAllViewDetails(result.data.Data);
+      })
+      .catch(error => {
+        console.log('in error', error);
+      });
+  };
+
   return (
     <div>
       {dialogEdit && <DialogEditBox EditViewCondition={'New'} dialogEdit={dialogEdit} oncloseEditDialog={dialogEditClose} ViewDetails={dialogViewDetails} />}
@@ -50,7 +74,7 @@ const ViewAllBlog = () => {
       </div>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <div style={{ paddingRight: 25 }}>
-          <TextField id='outlined-basic' label='Search...' variant='outlined' size='small' />
+          <TextField onBlur={handleSearch} id='outlined-basic' label='Search...' variant='outlined' size='small' />
         </div>
         <div>
           <Button variant='outlined' size='small' onClick={handleEdit}>

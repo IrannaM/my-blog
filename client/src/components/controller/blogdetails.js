@@ -44,4 +44,14 @@ const blogUpdate = (updateBlogDetails, id) => {
   }
 };
 
-export default { blogAllDetails, blogCreate, blogUpdate };
+const searchDetails = search => {
+  try {
+    return axios.get(url + '/blog-search' + `?search=${search}`, {
+      headers: headers,
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export default { blogAllDetails, blogCreate, blogUpdate, searchDetails };
