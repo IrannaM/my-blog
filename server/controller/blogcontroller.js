@@ -47,6 +47,17 @@ const BlogController = {
         res.status(400).json({ Error: error.message });
       });
   },
+
+  search(req, res) {
+    const { search } = req.query;
+    BlogService.searchService(search)
+      .then(result => {
+        res.status(200).json({ Data: result });
+      })
+      .catch(error => {
+        res.status(400).json({ Error: error.message });
+      });
+  },
 };
 
 export default BlogController;

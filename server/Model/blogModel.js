@@ -92,5 +92,16 @@ const BlogModel = {
       throw new Error(error.message);
     }
   },
+  async searchModel(data) {
+    try {
+      console.log('in searchModel', data);
+      let result = await blogDetails.find({ title: data });
+      console.log('in searchModel', result);
+      return result;
+    } catch (error) {
+      //   console.log('in error', error);
+      throw new Error(error.message);
+    }
+  },
 };
 export default BlogModel;
