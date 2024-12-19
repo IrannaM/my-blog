@@ -5,7 +5,7 @@ const initialState = {
 };
 
 const blogReducer = (state = initialState, action) => {
-  console.log('action.payload,', action.type, action.payload);
+  // console.log('action.payload,', action.type, action.payload);
   switch (action.type) {
     case 'FETCH_DATA_REQUEST':
       return {

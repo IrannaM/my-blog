@@ -14,6 +14,7 @@ const controller = {
   },
 
   login(req, res) {
+    console.log('in Login Controller Page :: ');
     const { email, password } = req.body.loginDetails;
     userService
       .loginService(email, password)

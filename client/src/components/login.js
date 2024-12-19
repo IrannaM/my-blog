@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import userLoginDetails from './controller/userdetails.js';
 import SnackbarDialog from './dashboard/SnackbarDialog.js';
+// import CryptoJS from 'crypto-js';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -23,13 +24,19 @@ const Login = () => {
     // Add your authentication logic here
     // console.log('Email:', email);
     // console.log('Password:', password);
+    // const encryptPassword = CryptoJS.AES.encrypt(JSON.stringify(password), secretPass).toString();
     var loginDetails = {
       email: email,
       password: password,
     };
 
     dispatch(userLoginDetails.fetchPosts(loginDetails));
+    // console.log('in data.data ====>', data.data.Data);
     if (data.data.Status) {
+      localStorage.setItem('token', data.data.Data.token);
+      localStorage.setItem('userId', data.data.Data._id);
+      localStorage.setItem('firstName', data.data.Data.firstName);
+      localStorage.setItem('lastName', data.data.Data.lastName);
       navigate('/view');
     } else {
       setTimeout(() => {

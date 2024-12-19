@@ -1,22 +1,34 @@
 import { Button, TextField } from '@mui/material';
-import { useCallback, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useCallback, useEffect, useState } from 'react';
+import blogdetails from '../controller/blogdetails';
 import DialogEditBox from './dialogEditBox';
 import ViewBlog from './viewBlog';
 
 const ApiData = [
-  { title: 'Post 1', comments: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica' },
-  { title: 'Post 2', comments: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species' },
-  { title: 'Post 3', comments: 'Lizards are a widespread group of squamate reptiles' },
-  { title: 'Post 4', comments: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica' },
-  { title: 'Post 5', comments: 'Comments 5' },
+  { title: 'Post 1', comment: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica' },
+  { title: 'Post 2', comment: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species' },
+  { title: 'Post 3', comment: 'Lizards are a widespread group of squamate reptiles' },
+  { title: 'Post 4', comment: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica' },
+  { title: 'Post 5', comment: 'Comments 5' },
 ];
 
 const ViewAllBlog = () => {
   const [viewAllDetails, setAllViewDetails] = useState(ApiData);
   const [dialogEdit, setDialogEdit] = useState(false);
-  const data = useSelector(state => state);
-  console.log('in data records :::: ', data);
+  const [dialogViewDetails, setDialogViewDetails] = useState({ title: '', comment: '', id: '' });
+
+  // console.log('in data records :::: ', data);
+
+  useEffect(() => {
+    blogdetails
+      .blogAllDetails()
+      .then(result => {
+        setAllViewDetails(result.data.Data);
+      })
+      .catch(error => {
+        console.log('in error', error);
+      });
+  }, [dialogEdit]);
 
   const handleEdit = () => {
     setDialogEdit(true);
@@ -24,6 +36,7 @@ const ViewAllBlog = () => {
 
   const dialogEditClose = useCallback(
     data => {
+      console.log('in dialogEdit :: After === dialogEditClose', data);
       setDialogEdit(data);
     },
     [dialogEdit]
@@ -31,7 +44,7 @@ const ViewAllBlog = () => {
 
   return (
     <div>
-      {dialogEdit && <DialogEditBox EditViewCondition={'New'} dialogEdit={dialogEdit} oncloseEditDialog={dialogEditClose} />}
+      {dialogEdit && <DialogEditBox EditViewCondition={'New'} dialogEdit={dialogEdit} oncloseEditDialog={dialogEditClose} ViewDetails={dialogViewDetails} />}
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <h2>BLOG POST</h2>
       </div>

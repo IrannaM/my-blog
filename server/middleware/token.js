@@ -16,6 +16,22 @@ const token = {
       throw new Error(error.message);
     }
   },
+  async verifyToken(req, res, next) {
+    try {
+      const token = req.headers.token;
+      console.log('in header ==>', req.headers.token);
+      const record = await jwt.verify(token, 'secret');
+      if (record) {
+        const token = record;
+        console.log('in verifIcation Token', token);
+        next();
+      } else {
+        throw new Error('Verification Token is not generating');
+      }
+    } catch (error) {
+      res.status(404).send(error);
+    }
+  },
 };
 
 export default token;
