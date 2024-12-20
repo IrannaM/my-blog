@@ -76,6 +76,28 @@ const model = {
       throw new Error(error.message);
     }
   },
+
+  // async loginModel(email, password) {
+  //   const oldEmail = 'iranna@gmail.com' ;
+  //   const oldPassword = 'Iranna@123';
+  //   try {
+  //     if(oldEmail === email){
+  //       if (oldPassword === password) {
+  //         let details ={
+  //           _id : '1234567',
+  //           email : email
+  //         }
+  //         return details;
+  //       } else {
+  //         throw new Error('Password is not correct');
+  //       }
+  //     }else {
+  //       throw new Error('Email id is not correct');
+  //     } 
+  //   } catch (error) {
+  //     throw new Error(error.message);
+  //   }
+  // },
 };
 
 export default model;

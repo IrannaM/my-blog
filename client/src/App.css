@@ -38,7 +38,7 @@
 }
 
 .login-container {
-  max-width: 400px;
+  max-width: 375px;
   margin: auto;
   padding: 20px;
   border: 1px solid #ccc;
@@ -82,4 +82,61 @@
 
 .css-10d30g3-MuiPaper-root-MuiDialog-paper {
   min-width: 500px;
+}
+
+
+/* **********Login Page ***************** */
+
+.login {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: auto;
+  padding: 20px;
+}
+
+@media (max-width : 350px) {
+  .card {
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+    height: auto;
+    padding: 20px;
+  }
+}
+
+.h1 {
+  display: flex;
+  justify-content: center;
+  font-size: 32px;
+  font-family: Times New Roman, Times, serif;
+}
+
+.h2 {
+  display: flex;
+  justify-content: center;
+  padding-top: 15px;
+  font-size: 20px;
+  font-family: Times New Roman, Times, serif;
+}
+
+.signOut {
+  display: flex;
+  padding-top: 10px;
+}
+
+.heading {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  font-family: Times New Roman, Times, serif;
+  opacity: 0.85;
 }
