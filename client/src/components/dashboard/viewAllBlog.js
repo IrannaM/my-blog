@@ -1,5 +1,6 @@
-import { Button, TextField } from '@mui/material';
+import { Button, Grid, TextField , Typography , AppBar , Toolbar , IconButton  , Box} from '@mui/material';
 import { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import blogdetails from '../controller/blogdetails';
 import DialogEditBox from './dialogEditBox';
 import ViewBlog from './viewBlog';
@@ -17,6 +18,7 @@ const ViewAllBlog = () => {
   const [dialogEdit, setDialogEdit] = useState(false);
   const [dialogViewDetails, setDialogViewDetails] = useState({ title: '', comment: '', id: '' });
   const [search, setSearch] = useState('');
+  const navigate =useNavigate();
 
   useEffect(() => {
     blogdetails
@@ -65,28 +67,64 @@ const ViewAllBlog = () => {
         console.log('in error', error);
       });
   };
-
+    const handleLogot =()=>{
+      navigate('/');
+    }
   return (
-    <div>
-      {dialogEdit && <DialogEditBox EditViewCondition={'New'} dialogEdit={dialogEdit} oncloseEditDialog={dialogEditClose} ViewDetails={dialogViewDetails} />}
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <h2>BLOG POST</h2>
-      </div>
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <div style={{ paddingRight: 25 }}>
-          <TextField onBlur={handleSearch} id='outlined-basic' label='Search...' variant='outlined' size='small' />
-        </div>
-        <div>
-          <Button variant='outlined' size='small' onClick={handleEdit}>
-            {' '}
-            Add Blog{' '}
-          </Button>
-        </div>
-      </div>
-      <div style={{ marginTop: 25 }}>
-        <ViewBlog data={viewAllDetails} />
-      </div>
-    </div>
+    // <div>
+    //   {dialogEdit && <DialogEditBox EditViewCondition={'New'} dialogEdit={dialogEdit} oncloseEditDialog={dialogEditClose} ViewDetails={dialogViewDetails} />}
+    //   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    //     <h2>BLOG POST</h2>
+    //   </div>
+    //   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    //     <div style={{ paddingRight: 25 }}>
+    //       <TextField onBlur={handleSearch} id='outlined-basic' label='Search...' variant='outlined' size='small' />
+    //     </div>
+    //     <div>
+    //       <Button variant='outlined' size='small' onClick={handleEdit}>
+    //         {' '}
+    //         Add Blog{' '}
+    //       </Button>
+    //     </div>
+    //   </div>
+    //   <div style={{ marginTop: 25 }}>
+    //     <ViewBlog data={viewAllDetails} />
+    //   </div>
+    // </div>
+      <Grid sx={{ display:'flex' , justifyContent:"center" , fontFamily:'auto'}} container>
+        {dialogEdit && <DialogEditBox EditViewCondition={'New'} dialogEdit={dialogEdit} oncloseEditDialog={dialogEditClose} ViewDetails={dialogViewDetails} />}
+        <Grid item xs={12} md={12}>
+          <Box sx={{ flexGrow: 1 }}>
+            <AppBar position="static">
+              <Toolbar>
+                <Typography variant="h6" component="div" sx={{ flexGrow: 1 , display:'flex', justifyContent:'center' }}>
+                  BLOG POST
+                </Typography>
+                <Button size='medium' color="inherit" onClick={handleLogot}>Login</Button>
+              </Toolbar>
+            </AppBar>
+            <Grid item xs={12} md={12} sx={{display: 'flex' , p:'12px' }}>
+              <Grid item xs={3} md={3}  />
+              <Grid item xs={4} md={4}  >
+                <TextField onBlur={handleSearch} id='outlined-basic' label='Search...' variant='outlined' size='small' fullWidth />
+              </Grid>
+              <Grid item xs={2} md={2} sx={{display: 'flex' , justifyContent: 'center' , alignSelf :'center'}} >
+                <Button size='medium' color='primary' onClick={handleEdit}>
+                  Add Blog
+                </Button>
+              </Grid>
+              <Grid item xs={3} md={3}  />
+            </Grid>
+            <Grid item xs={12} md={12} sx={{display: 'flex' , p:'12px' }}>
+              <Grid item xs={2} md={2} />
+              <Grid item xs={8} md={8} >
+                <ViewBlog data={viewAllDetails} />
+              </Grid>
+              <Grid item xs={2} md={2} />
+            </Grid>
+          </Box>
+        </Grid>
+      </Grid>
   );
 };
 
