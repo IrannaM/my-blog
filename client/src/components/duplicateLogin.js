@@ -1,6 +1,6 @@
 import { useState , useCallback ,  useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {Card , Button , TextField} from '@mui/material';
+import {Card , Button , TextField , Grid} from '@mui/material';
 import SnackbarDialog from './dashboard/SnackbarDialog.js';
 import { useNavigate } from 'react-router-dom';
 import userLoginDetails from './controller/userdetails.js';
@@ -71,22 +71,142 @@ const DuplicateLogin =() =>{
         setSnackBarMsg('');
       });
     return(
-        <div className="login"> 
+        // <div className="login"> 
+        //     {snackBarOpen && <SnackbarDialog open={snackBarOpen} message={snackBarMsg} close={handleClose} />}
+        //     <Card className="card">
+        //         <div className="h1">
+        //             <strong>
+        //                 <span style={{ color: "#4285F4" }}>M</span>
+        //                 <span style={{ color: "#EA4335" }}>y</span>
+        //                 <span style={{ color: "#FBBC05" }}>B</span>
+        //                 <span style={{ color: "#4285F4" }}>l</span>
+        //                 <span style={{ color: "#34A853" }}>o</span>
+        //                 <span style={{ color: "#EA4335" }}>g</span>
+        //             </strong>
+        //         </div>
+        //         <div className="heading"><strong>Welcome to MyBlog</strong></div>
+        //         <div className="h2"><strong><span>Sign In</span></strong></div>
+        //         <div className="email">
+        //                 <TextField
+        //                     id="email"
+        //                     variant="outlined"
+        //                     type="email"
+        //                     label="Email"
+        //                     placeholder="abc@gmail.com"
+        //                     margin="normal"
+        //                     required
+        //                     fullWidth
+        //                     value={email}
+        //                     onChange={handleChangeEmail}
+        //                 />
+        //             </div>
+        //             <div className="password">
+        //                 <TextField
+        //                     id="password"
+        //                     variant="outlined"
+        //                     type="password"
+        //                     label="Password"
+        //                     placeholder="********"
+        //                     margin="normal"
+        //                     required
+        //                     fullWidth
+        //                     value={password}
+        //                     onChange={handleChangePassword}
+
+        //                 />
+        //             </div>
+        //             <div className="signOut">
+        //                 <Button
+        //                     type="submit"
+        //                     fullWidth
+        //                     variant="contained"
+        //                     color="primary"
+        //                     onClick={handleClick}
+        //                 >
+        //                     SignIn
+        //                 </Button>
+        //             </div>
+        //     </Card>
+        // </div>
+        // <div className="login"> 
+        //     {snackBarOpen && <SnackbarDialog open={snackBarOpen} message={snackBarMsg} close={handleClose} />}
+        //     <Card variant="outlined" sx={{ maxWidth: 350 , m :'auto' , p :'12px' }}  >
+        //         <Grid sx={{ display:'flex' , justifyContent:"center"}} container spacing={2}>
+        //             <Grid sx={{justifyItems:'center' , fontSize : 18 , fontFamily:'auto'}} item xs={10} md={10}>
+        //                 <Grid >
+        //                     <strong>
+        //                         <span style={{ color: "#4285F4" }}>M</span>
+        //                         <span style={{ color: "#EA4335" }}>y</span>
+        //                         <span style={{ color: "#FBBC05" }}>B</span>
+        //                         <span style={{ color: "#4285F4" }}>l</span>
+        //                         <span style={{ color: "#34A853" }}>o</span>
+        //                         <span style={{ color: "#EA4335" }}>g</span>
+        //                     </strong>
+        //                 </Grid>
+        //                 <Grid sx={{p:1}}><strong>Welcome to MyBlog</strong></Grid>
+        //                 <Grid ><strong><span>Sign In</span></strong></Grid>
+        //             </Grid>
+        //             <Grid item xs={10} md={10}>
+        //                 <TextField
+        //                     id="email"
+        //                     variant="outlined"
+        //                     type="email"
+        //                     label="Email"
+        //                     placeholder="abc@gmail.com"
+        //                     margin="normal"
+        //                     required
+        //                     fullWidth
+        //                     value={email}
+        //                     onChange={handleChangeEmail}
+        //                 />
+        //             </Grid>
+        //             <Grid item xs={10} md={10}>
+        //                 <TextField
+        //                     id="password"
+        //                     variant="outlined"
+        //                     type="password"
+        //                     label="Password"
+        //                     placeholder="********"
+        //                     margin="normal"
+        //                     required
+        //                     fullWidth
+        //                     value={password}
+        //                     onChange={handleChangePassword}
+        //                 />
+        //             </Grid>
+        //             <Grid sx={{pb:2}} item xs={10} md={10}>
+        //                 <Button
+        //                     type="submit"
+        //                     fullWidth
+        //                     variant="contained"
+        //                     color="primary"
+        //                     onClick={handleClick}
+        //                 >
+        //                     SignIn
+        //                 </Button>
+        //             </Grid>
+        //         </Grid>
+        //     </Card>
+        // </div>
+        <Grid sx={{display:'flex' , height :'45vw' , fontFamily:'auto'}}> 
             {snackBarOpen && <SnackbarDialog open={snackBarOpen} message={snackBarMsg} close={handleClose} />}
-            <Card className="card">
-                <div className="h1">
-                    <strong>
-                        <span style={{ color: "#4285F4" }}>M</span>
-                        <span style={{ color: "#EA4335" }}>y</span>
-                        <span style={{ color: "#FBBC05" }}>B</span>
-                        <span style={{ color: "#4285F4" }}>l</span>
-                        <span style={{ color: "#34A853" }}>o</span>
-                        <span style={{ color: "#EA4335" }}>g</span>
-                    </strong>
-                </div>
-                <div className="heading"><strong>Welcome to MyBlog</strong></div>
-                <div className="h2"><strong><span>Sign In</span></strong></div>
-                <div className="email">
+            <Card variant="outlined" sx={{ maxWidth: 350 , m :'auto' , p :'12px' }}  >
+                <Grid sx={{ display:'flex' , justifyContent:"center"}} container spacing={2}>
+                    <Grid sx={{justifyItems:'center' , fontSize : 18 }} item xs={10} md={10}>
+                        <Grid >
+                            <strong>
+                                <span style={{ color: "#4285F4" }}>M</span>
+                                <span style={{ color: "#EA4335" }}>y</span>
+                                <span style={{ color: "#FBBC05" }}>B</span>
+                                <span style={{ color: "#4285F4" }}>l</span>
+                                <span style={{ color: "#34A853" }}>o</span>
+                                <span style={{ color: "#EA4335" }}>g</span>
+                            </strong>
+                        </Grid>
+                        <Grid sx={{p:1}}><strong>Welcome to MyBlog</strong></Grid>
+                        <Grid ><strong><span>Sign In</span></strong></Grid>
+                    </Grid>
+                    <Grid item xs={10} md={10}>
                         <TextField
                             id="email"
                             variant="outlined"
@@ -99,8 +219,8 @@ const DuplicateLogin =() =>{
                             value={email}
                             onChange={handleChangeEmail}
                         />
-                    </div>
-                    <div className="password">
+                    </Grid>
+                    <Grid item xs={10} md={10}>
                         <TextField
                             id="password"
                             variant="outlined"
@@ -112,10 +232,9 @@ const DuplicateLogin =() =>{
                             fullWidth
                             value={password}
                             onChange={handleChangePassword}
-
                         />
-                    </div>
-                    <div className="signOut">
+                    </Grid>
+                    <Grid sx={{pb:2}} item xs={10} md={10}>
                         <Button
                             type="submit"
                             fullWidth
@@ -125,10 +244,10 @@ const DuplicateLogin =() =>{
                         >
                             SignIn
                         </Button>
-                    </div>
+                    </Grid>
+                </Grid>
             </Card>
-        </div>
-    )
-}
+        </Grid>
+)}
 
 export default DuplicateLogin;

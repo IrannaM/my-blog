@@ -1,10 +1,6 @@
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import {Button , Dialog , DialogActions , DialogContent , DialogContentText  , DialogTitle } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import Textarea from '@mui/joy/Textarea';
 import blogdetails from '../controller/blogdetails';
 
 const DialogEditBox = ({ EditViewCondition, dialogEdit, oncloseEditDialog, ViewDetails }) => {
@@ -71,8 +67,10 @@ const DialogEditBox = ({ EditViewCondition, dialogEdit, oncloseEditDialog, ViewD
         <DialogContent>
           <DialogContentText style={{ display: 'grid' }}>
             {/* <div style={{ display: "contents"}} > */}
-            <input name='title' value={dialogViewDetails.title} onChange={handleInputChange} style={{ marginBottom: 10 }} type='text' placeholder='Title' />
-            <textarea name='comment' value={dialogViewDetails.comment} onChange={handleInputChange} placeholder='Comment' />
+            {/* <input name='title' value={dialogViewDetails.title} onChange={handleInputChange} style={{ marginBottom: 10 }} type='text' placeholder='Title' /> */}
+            {/* <textarea name='comment' value={dialogViewDetails.comment} onChange={handleInputChange} placeholder='Comment' /> */}
+            <Textarea sx={{mb:'10px'}} minRows={1} placeholder="Title" name='title' value={dialogViewDetails.title} onChange={handleInputChange} />
+            <Textarea minRows={2} placeholder="Comment" name='comment' value={dialogViewDetails.comment} onChange={handleInputChange} />
             {/* </div> */}
           </DialogContentText>
         </DialogContent>
