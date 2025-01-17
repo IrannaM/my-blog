@@ -58,18 +58,32 @@ const ViewAllBlog = () => {
   const handleSearch = e => {
     console.log('in search button', e.target.value);
     setSearch(e.target.value);
-    blogdetails
-      .searchDetails(e.target.value)
-      .then(result => {
-        setAllViewDetails(result.data.Data);
-      })
-      .catch(error => {
-        console.log('in error', error);
-      });
+    // blogdetails
+    //   .searchDetails(e.target.value)
+    //   .then(result => {
+    //     setAllViewDetails(result.data.Data);
+    //   })
+    //   .catch(error => {
+    //     console.log('in error', error);
+    //   });
   };
-    const handleLogot =()=>{
-      navigate('/');
-    }
+
+  useEffect(() => {
+    const value = search;
+    const result = ApiData.filter((ele , i)=>{
+      if(ele.comment.match(value) || ele.title.match(value) ){
+           return ele
+      }
+  })
+  // console.log("result :: ", result);
+  setAllViewDetails(result);
+  }, [search]);
+
+
+  const handleLogot =()=>{
+    navigate('/');
+  }
+
   return (
     // <div>
     //   {dialogEdit && <DialogEditBox EditViewCondition={'New'} dialogEdit={dialogEdit} oncloseEditDialog={dialogEditClose} ViewDetails={dialogViewDetails} />}
@@ -100,7 +114,7 @@ const ViewAllBlog = () => {
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 , display:'flex', justifyContent:'center' }}>
                   BLOG POST
                 </Typography>
-                <Button size='medium' color="inherit" onClick={handleLogot}>Login</Button>
+                <Button variant="outlined" size='medium' color="inherit" onClick={handleLogot}>Login</Button>
               </Toolbar>
             </AppBar>
             <Grid item xs={12} md={12} sx={{display: 'flex' , p:'12px' }}>
@@ -109,7 +123,7 @@ const ViewAllBlog = () => {
                 <TextField onBlur={handleSearch} id='outlined-basic' label='Search...' variant='outlined' size='small' fullWidth />
               </Grid>
               <Grid item xs={2} md={2} sx={{display: 'flex' , justifyContent: 'center' , alignSelf :'center'}} >
-                <Button size='medium' color='primary' onClick={handleEdit}>
+                <Button variant="outlined" size='medium' color='primary' onClick={handleEdit}>
                   Add Blog
                 </Button>
               </Grid>

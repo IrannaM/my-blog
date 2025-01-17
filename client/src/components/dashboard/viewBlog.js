@@ -35,7 +35,7 @@ export default function ViewBlog({ data }) {
 
   const dialogEditClose = useCallback(
     data => {
-      window.location.reload();
+      // window.location.reload();
       setDialogEdit(data);
     },
     [dialogEdit]
@@ -76,12 +76,12 @@ export default function ViewBlog({ data }) {
               </Box>
             </Card>
           </Grid>
-          <Grid item xs={1} md={1}/>
-          <Grid item xs={2} md={2} sx={{alignSelf:'center' , display:'flex'}}>
-            <Button size='medium' color='primary' onClick={() => handleView(ele.title, ele.comment)}>
+          {/* <Grid item xs={1} md={1}/> */}
+          <Grid item xs={3} md={3} sx={{alignSelf:'center' , display:'flex' , justifyContent : 'space-evenly'}}>
+            <Button variant="outlined" size='medium' color='primary' onClick={() => handleView(ele.title, ele.comment)}>
               View
             </Button>
-            <Button size='medium' color='primary' onClick={() => handleEdit(ele.title, ele.comment, ele._id)}>
+            <Button variant="outlined" size='medium' color='primary' onClick={() => handleEdit(ele.title, ele.comment, ele._id)}>
               Edit
             </Button>
           </Grid>
