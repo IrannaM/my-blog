@@ -69,9 +69,9 @@ const ViewAllBlog = () => {
   };
 
   useEffect(() => {
-    const value = search;
+    const value = search.toLowerCase();
     const result = ApiData.filter((ele , i)=>{
-      if(ele.comment.match(value) || ele.title.match(value) ){
+      if(ele.comment.toLowerCase().match(value) || ele.title.toLowerCase().match(value) ){
            return ele
       }
   })
