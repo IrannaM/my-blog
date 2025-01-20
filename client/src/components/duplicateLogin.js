@@ -2,8 +2,9 @@ import { useState , useCallback ,  useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {Card , Button , TextField , Grid} from '@mui/material';
 import SnackbarDialog from './dashboard/SnackbarDialog.js';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , Link } from 'react-router-dom';
 import userLoginDetails from './controller/userdetails.js';
+import ForgetPassword from './forgetPassword.js';
 
 
 const DuplicateLogin =() =>{
@@ -14,6 +15,7 @@ const DuplicateLogin =() =>{
     const navigate =useNavigate();
     const dispatch = useDispatch();
     const data = useSelector(state => state.blog);
+    const [forgetPasswordPopup , SetforgetPasswordPopUp] = useState(false);
 
     useEffect(() => {
         // console.log("in use Effect data login page==>" , data )
@@ -70,6 +72,16 @@ const DuplicateLogin =() =>{
         setSnackBarOpen(data);
         setSnackBarMsg('');
       });
+
+    const handleForgetPasswordOpen = () =>{
+        console.log("in Open Login page")
+        SetforgetPasswordPopUp(true)
+    }
+
+    const handleClosePopUp = useCallback((data) =>{
+        console.log("in data :: ", data )
+        SetforgetPasswordPopUp(data)
+    },[forgetPasswordPopup])
     return(
         // <div className="login"> 
         //     {snackBarOpen && <SnackbarDialog open={snackBarOpen} message={snackBarMsg} close={handleClose} />}
@@ -188,9 +200,10 @@ const DuplicateLogin =() =>{
         //         </Grid>
         //     </Card>
         // </div>
-        <Grid sx={{display:'flex' , height :'45vw' , fontFamily:'auto'}}> 
+        <Grid sx={{display:'flex' , height :'40vw'}}> 
             {snackBarOpen && <SnackbarDialog open={snackBarOpen} message={snackBarMsg} close={handleClose} />}
-            <Card variant="outlined" sx={{ maxWidth: 350 , m :'auto' , p :'12px' }}  >
+            {/* {forgetPasswordPopup && <ForgetPassword open_pop={forgetPasswordPopup} handleClose ={handleClosePopUp} /> } */}
+            <Card variant="outlined" sx={{ maxWidth: 350 , m :'auto' , p :'12px' , fontFamily:'auto' }}  >
                 <Grid sx={{ display:'flex' , justifyContent:"center"}} container spacing={2}>
                     <Grid sx={{justifyItems:'center' , fontSize : 18 }} item xs={10} md={10}>
                         <Grid >
@@ -213,7 +226,7 @@ const DuplicateLogin =() =>{
                             type="email"
                             label="Email"
                             placeholder="abc@gmail.com"
-                            margin="normal"
+                            // margin="normal"
                             required
                             fullWidth
                             value={email}
@@ -233,8 +246,12 @@ const DuplicateLogin =() =>{
                             value={password}
                             onChange={handleChangePassword}
                         />
+                        {/* <Grid onClick={handleForgetPasswordOpen} sx={{ display:'flex' , justifyContent:"end" , cursor :'pointer'}} >
+                            <span style={{fontSize :'smaller' , color: '#0476D0'}}> Forget Password? </span>
+                        </Grid> */}
+                        {/* <Link style={{fontSize :'smaller' , textDecoration: 'none'}} to = "/forget-password"> Forget Password?</Link> */}
                     </Grid>
-                    <Grid sx={{pb:2}} item xs={10} md={10}>
+                    <Grid item xs={10} md={10}>
                         <Button
                             type="submit"
                             fullWidth
@@ -244,6 +261,10 @@ const DuplicateLogin =() =>{
                         >
                             SignIn
                         </Button>
+                    </Grid>
+                    <Grid item xs={10} md={10} sx={{pt:'5px !important' , fontSize :'smaller', textAlign :'center'}}>
+                        <span >Don't have an account?</span> 
+                        <Link style ={{textDecoration:'none' , color :'#0476D0' }} to = "/register"> Sign Up</Link>
                     </Grid>
                 </Grid>
             </Card>

@@ -13,6 +13,7 @@ import {CircularProgress, Grid} from "@mui/material";
 
 const ViewAllBlog = React.lazy(() => import('./components/dashboard/viewAllBlog'));
 const DuplicateLogin = React.lazy(() => import('./components/duplicateLogin'));
+const RegisterPage = React.lazy(()=> import('./components/registerPage'));
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           {/* <Route path="/" exact element={<Login />} /> */}
           <Route path="/" exact element={<DuplicateLogin />} />
           <Route path="/view" element={<ViewAllBlog />}></Route>
+          <Route path="/register" exact element={<RegisterPage />} />
       </Routes>
     </BrowserRouter>
     </Suspense>
